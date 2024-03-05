@@ -1,0 +1,16 @@
+{
+  "name": "frontend-project",
+  "version": "1.0.0",
+  "description": "",
+  "source": "src/index.html",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build"
+  },
+  "author": "Moa Berglund",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.12.0"
+  },
+  "browserlist": ">0.5%, last 2 versions, not dead"
+}
