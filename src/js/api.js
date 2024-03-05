@@ -3,7 +3,7 @@
 //asynkron hämtning av api Nobelpriset
 async function fetchAPI() {
     const year = 1974;
-    const url = `https://api.nobelprize.org/2.1/nobelPrizes?nobelPrizeCategory=lit&nobelPrizeYear=${year}&format=json&csvLang=se`
+    const url = `https://api.nobelprize.org/2.1/nobelPrizes?nobelPrizeCategory=lit&nobelPrizeYear=${year}&format=json&csvLang=se`;
 
     try {
         const response = await fetch(url);
@@ -20,7 +20,7 @@ async function fetchAPI() {
 async function processAPI() {
     try {
         const result = await fetchAPI();
-        console.log('Hämtad data:', result);
+        console.log("Hämtad data av Nobelpristagare: ", result);
 
         //kolla om det finns 0, en eller flera mottagare av pris 
         if (result.nobelPrizes.length > 0) {
@@ -42,3 +42,32 @@ async function processAPI() {
     }
 }
 processAPI();
+
+
+//asynkron hämtning av api Google Books
+async function fetchBook() {
+    const nobelAuthor = "Zadie Smith";
+    const book = `https://www.googleapis.com/books/v1/volumes?q=inauthor:${nobelAuthor}&maxResults=4`;
+
+    try {
+        const response = await fetch(book);
+        const data = await response.json();
+        return data;
+    }
+    catch (error) {
+        console.error('Fetch error:', error);
+        throw error;
+    }
+}
+
+async function processBook() {
+    try {
+        const result = await fetchBook();
+        console.log("Hämtad data från Google Books: ", result)
+    }
+    catch (error) {
+        console.error('Process error:', error);
+    }
+}
+
+processBook();
