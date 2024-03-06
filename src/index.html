@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="sv">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="css/main.scss">
     <script src="js/api.js" type="module"></script>
 </head>
+
 <body>
     <header>
         <h1>Moa Berglund Projektarbete Frontened</h1>
@@ -14,7 +16,16 @@
 
     <section>
         <div id="api">
-            <h2>API</h2>
+            <h2>Nobelpris för författare</h2>
+            <form>
+                <label for="search-input">Välj författare efter år:</label><br>
+                <input type="number" maxlength="4" id="search-input" name="search-input" placeholder="YYYY"
+                    required="required">
+                <input type="submit" id="submit" value="Sök">
+                <p id="message"></p>
+            </form>
+            <p>Nobelpriset i litteratur började att delas ut 1901. Vissa år har priset inte delats ut och vissa år har
+                det delats ut till mer än en författare.</p>
 
         </div>
     </section>
@@ -23,4 +34,5 @@
         <p>&copy;Moa Berglund 2024</p>
     </footer>
 </body>
+
 </html>
