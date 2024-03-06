@@ -15,9 +15,9 @@ function init() {
     submitYear.disabled = true;
 
     // Lyssna på formulärets submit-händelse
-    document.querySelector('form').addEventListener('submit', function (e) {
+    document.querySelector('form').addEventListener('submit', async function (e) {
         e.preventDefault(); // Förhindra formuläret från att skickas innan kontrollen är klar
-        yearThroughAPI(); //anropa funktion vid submit
+        await yearThroughAPI(); //anropa funktion vid submit
     });
 }
 
@@ -33,34 +33,6 @@ function checkInput() {
         submitYear.disabled = false;
     }
 }
-
-
-// Funktion för att hämta och behandla data från API:et
-async function yearThroughAPI() {
-    try {
-        const result = await fetchAPI();
-        console.log("Hämtad data av Nobelpristagare: ", result);
-
-        //kolla om det finns 0, en eller flera mottagare av pris 
-        if (result.nobelPrizes.length > 0) {
-            const laureates = result.nobelPrizes[0].laureates;
-            if (laureates.length > 0) {
-                //spara författaren/-na i en array
-                const authors = [];
-                laureates.forEach(author => {
-                    authors.push(author.fullName.en)
-                });
-                console.log("Författare: ", authors);
-
-            } else {
-                console.log("Inga mottagare av priset detta år...")
-            }
-        }
-    } catch (error) {
-        console.error('Process error:', error);
-    }
-}
-
 
 
 //asynkron hämtning av api Nobelpriset
@@ -80,7 +52,8 @@ async function fetchAPI() {
 }
 
 
-async function processAPI() {
+// Funktion för att hämta och behandla data från API:et
+async function yearThroughAPI() {
     try {
         const result = await fetchAPI();
         console.log("Hämtad data av Nobelpristagare: ", result);
@@ -90,26 +63,27 @@ async function processAPI() {
             const laureates = result.nobelPrizes[0].laureates;
             if (laureates.length > 0) {
                 //spara författaren/-na i en array
-                const authors = [];
-                laureates.forEach(author => {
-                    authors.push(author.fullName.en)
-                });
+                const authors = laureates.map(author => author.fullName.en);
                 console.log("Författare: ", authors);
+
+                //hämta info från google books
+                await processBook(authors);
 
             } else {
                 console.log("Inga mottagare av priset detta år...")
             }
+        } else {
+            console.log("Inga priser delades ut ditt angivna år...")
         }
     } catch (error) {
         console.error('Process error:', error);
     }
 }
-processAPI();
-
 
 //asynkron hämtning av api Google Books
-async function fetchBook() {
-    const nobelAuthor = authors;
+//skicka med authors
+async function fetchBook(authors) {
+    let nobelAuthor = authors;
 
     // Kontrollera och förbered författarnamnet
     nobelAuthor = nobelAuthor.map(author => {
@@ -136,14 +110,12 @@ async function fetchBook() {
     }
 }
 
-async function processBook() {
+async function processBook(authors) {
     try {
-        const result = await fetchBook();
+        const result = await fetchBook(authors);
         console.log("Hämtad data från Google Books: ", result)
     }
     catch (error) {
         console.error('Process error:', error);
     }
 }
-
-processBook();
