@@ -13,12 +13,6 @@ window.onload = init;
 function init() {
     //inaktivera sökknappen
     submitYear.disabled = true;
-
-    // Lyssna på formulärets submit-händelse
-    document.querySelector('form').addEventListener('submit', async function (e) {
-        e.preventDefault(); // Förhindra formuläret från att skickas innan kontrollen är klar
-        await yearThroughAPI(); //anropa funktion vid submit
-    });
 }
 
 //funktion för input
@@ -55,6 +49,9 @@ async function fetchAPI() {
 // Funktion för att hämta och behandla data från API:et
 async function yearThroughAPI() {
     try {
+        //inaktivera knapp medan data hämtas
+        submitYear.disabled = true;
+
         const result = await fetchAPI();
         console.log("Hämtad data av Nobelpristagare: ", result);
 
@@ -77,12 +74,16 @@ async function yearThroughAPI() {
         }
     } catch (error) {
         console.error('Process error:', error);
+    } finally {
+        //aktivera submit knapp oavsett resultat
+        submitYear.disabled = false;
     }
 }
 
 //asynkron hämtning av api Google Books
 //skicka med authors
 async function fetchBook(authors) {
+    //let för att det ska gå att ändras nedan
     let nobelAuthor = authors;
 
     // Kontrollera och förbered författarnamnet
