@@ -13,9 +13,9 @@ window.onload = init;
 function init() {
     //inaktivera sökknappen
     submitYear.disabled = true;
-    
+
     // Lyssna på formulärets submit-händelse
-    document.querySelector('form').addEventListener('submit', function(e) {
+    document.querySelector('form').addEventListener('submit', function (e) {
         e.preventDefault(); // Förhindra formuläret från att skickas innan kontrollen är klar
         yearThroughAPI(); //anropa funktion vid submit
     });
@@ -109,11 +109,24 @@ processAPI();
 
 //asynkron hämtning av api Google Books
 async function fetchBook() {
-    const nobelAuthor = "Zadie Smith";
-    const book = `https://www.googleapis.com/books/v1/volumes?q=inauthor:${nobelAuthor}&maxResults=4`;
+    const nobelAuthor = authors;
+
+    // Kontrollera och förbered författarnamnet
+    nobelAuthor = nobelAuthor.map(author => {
+        // Trimma namnet
+        author = author.trim();
+
+        // Kodera eventuella specialtecken
+        author = encodeURIComponent(author);
+
+        return author;
+    });
+    // Skapa en söksträng för Google Books API-anropet baserat på författarnas namn
+    const searchQuery = nobelAuthor.map(author => `inauthor:${author}`).join('+OR+');
+    const bookUrl = `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&maxResults=4`;
 
     try {
-        const response = await fetch(book);
+        const response = await fetch(bookUrl);
         const data = await response.json();
         return data;
     }
