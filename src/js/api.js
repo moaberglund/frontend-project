@@ -98,7 +98,7 @@ async function fetchBook(authors) {
     });
     // Skapa en söksträng för Google Books API-anropet baserat på författarnas namn
     const searchQuery = nobelAuthor.map(author => `inauthor:${author}`).join('+OR+');
-    const bookUrl = `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&maxResults=4`;
+    const bookUrl = `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&lang=en&maxResults=4`;
 
     try {
         const response = await fetch(bookUrl);
@@ -114,7 +114,39 @@ async function fetchBook(authors) {
 async function processBook(authors) {
     try {
         const result = await fetchBook(authors);
-        console.log("Hämtad data från Google Books: ", result)
+        console.log("Hämtad data från Google Books: ", result);
+
+        //test av utskrift med DOM
+        const bookOutput = document.getElementById("book-output");
+        //först och främst - töm!!
+        bookOutput.innerHTML = "";
+
+        result.items.forEach(item => {
+            const bookTitle = item.volumeInfo.title;
+            const bookAuthors = item.volumeInfo.authors.join(", ");
+            const bookDescription = item.volumeInfo.description;
+
+            //skapa div och lägg till class="book"
+            const bookElement = document.createElement("div");
+            bookElement.classList.add("book");
+
+            //skapa titel
+            const titleElement = document.createElement("h3");
+            titleElement.textContent = bookTitle;
+            bookElement.appendChild(titleElement);
+
+            const authorsElement = document.createElement("p");
+            authorsElement.textContent = "Författare: " + bookAuthors;
+            bookElement.appendChild(authorsElement);
+
+            const descriptionElement = document.createElement("p");
+            descriptionElement.textContent = bookDescription;
+            bookElement.appendChild(descriptionElement);
+
+            bookOutput.appendChild(bookElement);
+
+
+        })
     }
     catch (error) {
         console.error('Process error:', error);
