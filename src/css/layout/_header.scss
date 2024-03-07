@@ -1,0 +1,6 @@
+@use '../abstracts/variables';
+
+
+header {
+    background-color: variables.$header1;
+}
