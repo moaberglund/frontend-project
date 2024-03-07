@@ -6,10 +6,21 @@
     box-sizing: border-box;
 }
 
-
 .wrapper {
     max-width: 1200px;
     justify-content: center;
     align-items: center;
     margin: auto;
+}
+
+section {
+    min-height: 70vh;
+}
+
+h2 {
+    padding: 1em 20px 20px 5%;
+}
+
+p {
+    @extend h2;
 }
