@@ -3,4 +3,139 @@
 
 header {
     background-color: variables.$header1;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1);
+
+    h1 {
+        height: 10vh;
+        padding: 1em 20px 25px 5%;
+    }
+
+}
+
+
+#burger-nav {
+    nav {
+        background-color: variables.$header1;
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        width: 100vw;
+        display: none;
+
+        ul {
+            width: 100%;
+            list-style-type: none;
+            margin: 0 auto;
+            padding: 0;
+            top: 7em;
+            position: absolute;
+            text-align: left;
+        }
+
+        li {
+            padding: 1em 1em 1em 3em;
+            width: 100%;
+        }
+
+        a {
+            color: variables.$black;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 2em;
+            padding: 0 0 0 0.5em;
+
+            &:hover {
+                cursor: pointer;
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .menu-btn {
+        position: absolute;
+        left: 5em;
+        top: 4em;
+        display: flex;
+        align-items: center;
+        background-color: variables.$header1;
+        cursor: pointer;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .open {
+        position: absolute;
+    }
+
+    .close {
+        position: absolute;
+        left: 0;
+        top: 0;
+        padding: 1em 0 1em 5em;
+        background-color: variables.$header1;
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1);
+        width: 100vw;
+        height: 15vh;
+    }
+}
+
+
+#desktop-nav {
+    display: none;
+}
+
+@media screen and (min-width:1025px) {
+
+    #burger-nav {
+        display: none;
+    }
+
+    #desktop-nav {
+        display: block;
+
+        nav {
+            background-color: variables.$header2;
+            box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1);
+            width: 100vw;
+            display: block !important;
+            position: static;
+            height: 8vh;
+            width: auto;
+            font-size: 1.2em;
+
+            ul {
+                text-align: right;
+                position: static;
+                height: 100%;
+                width: 100%;
+            }
+
+            li {
+                display: inline;
+                text-transform: uppercase;
+                font-weight: bold;
+                padding: 1em;
+            }
+
+            a {
+                color: variables.$white;
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 20px;
+                line-height: 2em;
+                padding: 0 0 0 0.5em;
+
+                &:hover {
+                    cursor: pointer;
+                    text-decoration: underline;
+                    text-shadow: 1px 1px rgba(61, 61, 136, 0.5);
+                }
+            }
+        }
+    }
+
 }

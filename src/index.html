@@ -7,12 +7,37 @@
     <title>Project API</title>
     <link rel="stylesheet" href="css/main.scss">
     <script src="js/api.js" type="module"></script>
+    <script src="https://kit.fontawesome.com/9543e08d94.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div class="wrapper">
         <header>
-            <h1>Moa Berglund Projektarbete Frontened</h1>
+            <div id="burger-nav">
+                <button class="menu-btn open" id="open-menu"><i class="fa-solid fa-bars fa-xl"
+                        style="color: #000000;"></i>
+                </button>
+                <nav id="burger-nav">
+                    <button class="menu-btn close" id="close-menu"><i class="fa-solid fa-x fa-xl"
+                            style="color:  #000000;"></i>
+                    </button>
+                    <ul>
+                        <li><a href="#">Projektet</a></li>
+                        <li><a href="#">Alfred Nobel</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <h1>Nobelpriset i litteratur</h1>
+
+            <div id="desktop-nav">
+                <nav>
+                    <ul>
+                        <li><a href="#">Projektet</a></li>
+                        <li><a href="#">Alfred Nobel</a></li>
+                    </ul>
+                </nav>
+            </div>
         </header>
 
         <section>
