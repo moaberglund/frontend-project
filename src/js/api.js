@@ -122,6 +122,7 @@ async function processBook(authors) {
         bookOutput.innerHTML = "";
 
         result.items.forEach(item => {
+            const coverURL = item.volumeInfo.imageLinks.thumbnail;
             const bookTitle = item.volumeInfo.title;
             const bookAuthors = item.volumeInfo.authors.join(", ");
             const bookDescription = item.volumeInfo.description;
@@ -129,6 +130,12 @@ async function processBook(authors) {
             //skapa div och lägg till class="book"
             const bookElement = document.createElement("div");
             bookElement.classList.add("book");
+
+            //omslag
+            const coverElement = document.createElement("img");
+            coverElement.classList.add("book-cover"); // Lägg till klassen för bokomslaget
+            coverElement.src = coverURL; // Sätt källan för bokomslaget
+            bookElement.appendChild(coverElement); 
 
             //skapa titel
             const titleElement = document.createElement("h3");
