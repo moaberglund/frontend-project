@@ -11,7 +11,8 @@
   "license": "ISC",
   "devDependencies": {
     "@parcel/transformer-sass": "^2.12.0",
-    "parcel": "^2.12.0"
+    "parcel": "^2.12.0",
+    "sharp": "^0.31.3"
   },
   "browserlist": ">0.5%, last 2 versions, not dead"
 }

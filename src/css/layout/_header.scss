@@ -10,6 +10,14 @@ header {
         padding: 0.5em 20px 2.2em 5%;
     }
 }
+
+#logo {
+    display: flex;
+    justify-content: center; // Horisontell centrering
+    align-items: center; // Vertikal centrering
+    margin-bottom: 1em;
+}
+
 .blue {
     h1 {
         color: variables.$darkblue;
