@@ -142,7 +142,7 @@ async function processBook(authors) {
             titleElement.textContent = bookTitle;
             bookElement.appendChild(titleElement);
 
-            const authorsElement = document.createElement("p");
+            const authorsElement = document.createElement("h4");
             authorsElement.textContent = "Författare: " + bookAuthors;
             bookElement.appendChild(authorsElement);
 
