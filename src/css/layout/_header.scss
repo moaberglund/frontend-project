@@ -7,11 +7,14 @@ header {
 
     h1 {
         height: 10vh;
-        padding: 1em 20px 25px 5%;
+        padding: 0.5em 20px 2.2em 5%;
     }
-
 }
-
+.blue {
+    h1 {
+        color: variables.$darkblue;
+    }
+}
 
 #burger-nav {
     nav {
