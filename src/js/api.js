@@ -19,7 +19,7 @@ function init() {
 function checkInput() {
     const input = searchYear.value;
     //kontrollera längd
-    if (input.length < 4) {
+    if (input.length < 4 || input.length > 4) {
         message.innerHTML = "Ange ett år i formatet YYYY.";
         submitYear.disabled = true;
     } else {
