@@ -1,0 +1,23 @@
+
+/* Nyckelram för textskrivning */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+/* Nyckelram för blinkande markör */
+@keyframes blink-caret {
+    0% {
+        border-color: transparent;
+    }
+    50% {
+        border-color: rgb(0, 0, 0);
+    }
+    100% {
+        border-color: transparent;
+    }
+}

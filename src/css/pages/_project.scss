@@ -1,8 +1,8 @@
 @use '../abstracts/variables';
+@use '../base/animations';
 
 
 .project-page {
-
 
     #project {
         max-width: 950px;
@@ -21,4 +21,13 @@
         }
     }
 
+}
+
+.typewriter {
+    width: 100%;
+    overflow: hidden; /* Dölj resten av texten */
+    border-right: .1em solid rgb(0, 0, 0); /* Låtsas att det är en blinkande markör */
+    white-space: nowrap; /* Håll texten på en rad */
+    letter-spacing: .1em; /* Lägg till lite mellanrum mellan bokstäverna */
+    animation: typing 5s steps(40, end), blink-caret 1s step-end infinite;
 }
