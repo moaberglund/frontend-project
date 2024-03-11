@@ -20,7 +20,7 @@ function checkInput() {
     const input = searchYear.value;
     //kontrollera längd
     if (input.length < 4 || input.length > 4) {
-        message.innerHTML = "Ange ett år i formatet YYYY.";
+        message.innerHTML = "Please insert a year with following format: YYYY.";
         submitYear.disabled = true;
     } else {
         message.innerHTML = "";
@@ -98,7 +98,7 @@ async function fetchBook(authors) {
     });
     // Skapa en söksträng för Google Books API-anropet baserat på författarnas namn
     const searchQuery = nobelAuthor.map(author => `inauthor:${author}`).join('+OR+');
-    const bookUrl = `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&lang=en&maxResults=4`;
+    const bookUrl = `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&lang=en&langRestrict=en&maxResults=4`;
 
     try {
         const response = await fetch(bookUrl);
@@ -143,7 +143,7 @@ async function processBook(authors) {
             bookElement.appendChild(titleElement);
 
             const authorsElement = document.createElement("h4");
-            authorsElement.textContent = "Författare: " + bookAuthors;
+            authorsElement.textContent = "Author: " + bookAuthors;
             bookElement.appendChild(authorsElement);
 
             const descriptionElement = document.createElement("p");
