@@ -1,4 +1,5 @@
 @use '../abstracts/variables';
+@use '../base/animations';
 
 
 header {
@@ -13,6 +14,9 @@ header {
     margin-bottom: 1em;
 }
 
+.pulse:hover {
+    animation: pulse 2s infinite;
+}
 
 #drop-nav {
     nav {
