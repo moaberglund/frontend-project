@@ -1,4 +1,5 @@
-
+@use '../abstracts/variables';
+@use '../base/typography';
 
 
 form {
@@ -7,13 +8,29 @@ form {
     label {
         padding: 0.5em;
     }
+
     input {
-        background-color: white;
-        padding: 0.7em;
+        font-family: typography.$base-font;
+        font-size: 15px;
+        background-color: variables.$white;
+        padding: 0.8em;
         margin-top: 0.5em;
     }
+
+    input[type="submit"] {
+        @extend input;
+        background-color: variables.$lightblue;
+        color: variables.$white;
+        font-weight: 600;
+        border-radius: 15%;
+        margin-left: 0.3em;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
     p {
-        padding: 0.5em 0 0 0 ;
+        padding: 0.5em 0 0 0;
         margin: 0;
         font-size: 12px;
         font-style: italic;
